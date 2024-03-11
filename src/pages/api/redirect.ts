@@ -46,14 +46,16 @@ const processDomain = (domain: string) => {
     const part = domainArr[i];
     let isRepeat: boolean;
     (i === domainArr.length - 1) ? isRepeat = true : isRepeat = false;
-  if (part.includes('+')) {
-    const subParts = part.split('+');
-    for (const subPart of subParts) {
-      result += `${processSubPart(subPart, isRepeat)}.`;
+    if (part.includes('+')) {
+      const subParts = part.split('+');
+      for (const subPart of subParts) {
+        result += `${processSubPart(subPart, isRepeat)}`;
+      }
+    } else {
+      result += `${processSubPart(part, isRepeat)}`;
     }
-  } else {
-    result += `${processSubPart(part, isRepeat)}.`;
-  }}
+    result += '.';
+  }
   let processedDomain = `${result}${domainExt}`;
   return processedDomain;
 };
@@ -84,18 +86,28 @@ function getCharRange(start: string, end: string): string[] {
   const endCode = end.charCodeAt(0);
   const range: string[] = [];
 
-  for (let i = startCode; i <= endCode; i++) {
+  let increment = true;
+  let i = startCode;
+  startCode < endCode ? increment = true : increment = false;
+
+  while(increment ? i <= endCode : i >= endCode) {
     range.push(String.fromCharCode(i));
+    increment ? i++ : i--;
   }
 
   return range;
 }
 
-function getNumRange(start: number, end: number): number[] {
+function getNumRange(startNum: number, endNum: number): number[] {
   const range: number[] = [];
 
-  for (let i = start; i <= end; i++) {
+  let increment = true;
+  let i = startNum;
+  startNum < endNum ? increment = true : increment = false;
+
+  while(increment ? i <= endNum : i >= endNum) {
     range.push(i);
+    increment ? i++ : i--;
   }
 
   return range;
