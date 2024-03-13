@@ -25,9 +25,13 @@ export default async function handler(
 
     // 将数据存储到 Google Sheets
     await saveToGoogleSheets(processedDomain as string);
-
-    // 重定向到处理后的域名
-    res.redirect(`http://${processedDomain}`);
+    if(req.method === 'POST') {
+      res.status(200).json({ domain: processedDomain });
+    }
+    else {
+      // 重定向到处理后的域名
+      res.redirect(`http://${processedDomain}`);
+    }
   } catch (error) {
     console.error('Error processing domain:', error);
     res.status(500).json({ error: 'Error processing domain' });

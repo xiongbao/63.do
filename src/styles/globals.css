@@ -18,13 +18,84 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: var(--font-inter);
 }
+
+header {
+  background-image: url(/images/bg.svg);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-family: var(--font-roboto-mono);
+  font-weight: 500;
+  @apply text-gray-500;
+}
+code strong {
+  color: rgb(202, 41, 41);
+}
+
+.domain-guide {
+	display: flex;
+	justify-content: center;
+	font-size: 36px;
+	font-weight: 600;
+	letter-spacing: normal;
+	font-family: var(--font-roboto-mono);
+	padding: 30px 0 50px;
+}
+.domain-slice {
+	position: relative;
+	display: block;
+	line-height: 1.2;
+}
+
+
+.tld {
+	@apply text-slate-600;
+}
+.sld {
+	@apply text-orange-500;
+}
+.sub {
+	@apply text-slate-600;
+}
+.domain-slice .txt {
+	position: absolute;
+	left: 2em;
+	right: 0;
+	top: 100%;
+	color: #878b99;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	display: flex;
+	align-items: center;
+}
+.domain-slice.sub .txt {left: 0;}
+.domain-slice .txt::before,
+.domain-slice .txt::after {
+	content: '';
+	border-style: solid;
+	border-color: #ddd;
+	display: block;
+	flex: 1;
+	transform: translateY(-48%);
+    height: 8px;
+}
+.domain-slice .txt::before {
+	border-width: 0 0 1px 1px;
+}
+.domain-slice .txt::after {
+	border-width: 0 1px 1px 0;
+}
+.domain-slice .txt::before {margin-right: 4px;}
+.domain-slice .txt::after {margin-left: 4px;}
 
 @layer utilities {
   .text-balance {
