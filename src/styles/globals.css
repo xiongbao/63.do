@@ -7,7 +7,7 @@ body {
   background-image: url(/images/bg.svg);
   background-size: auto 50vh;
   background-repeat: no-repeat;
-  background-position: 50% 70%;
+  background-position: 50% 30vh;
   background-attachment: fixed;
 }
 
