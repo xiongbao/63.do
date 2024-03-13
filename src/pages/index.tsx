@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Inter, Roboto_Mono } from "next/font/google";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto_mono = Roboto_Mono({
@@ -12,23 +12,44 @@ const roboto_mono = Roboto_Mono({
 export default function Home() {
   const [domain, setDomain] = useState('');
   const [processedDomain, setProcessedDomain] = useState('');
+  const [countdown, setCountdown] = useState(0);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const response = await fetch(`/api/redirect?${domain}`,{method: 'POST'});
+    const response = await fetch(`/api/redirect?domain=${domain}`,{method: 'POST'});
     const data = await response.json();
     setProcessedDomain(data.domain);
   };
+
+  useEffect(() => {
+    if (processedDomain) {
+      setCountdown(3);
+
+      const timer = setTimeout(() => {
+        window.location.href = `http://${processedDomain}`;
+      }, 3000);
+
+      const countdownTimer = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+
+      return () => {
+        clearTimeout(timer);
+        clearInterval(countdownTimer);
+      };
+    }
+  }, [processedDomain]);
+
   return (
   <>
     <header className="flex flex-col justify-center items-center py-20">
       <h1 className="flex items-center gap-2">
         <Image
           src="/images/logo.png"
-          width={120}
-          height={144}
-          className="sm:w-[150px] sm:h-[180px]"
+          width={80}
+          height={96}
+          className="sm:w-[100px] sm:h-[120px]"
           alt="63"
         />
         <span className="flex flex-col sm:-mt-4">
@@ -51,18 +72,18 @@ export default function Home() {
         <button className="bg-indigo-500 text-white font-semibold rounded-md w-full h-10 sm:h-auto sm:w-20" type="submit">GO!</button>
       </form>
       <div className="flex gap-2 mt-5 px-5">
-        <h4 className="italic text-slate-500 shrink-0">Redirect to:</h4>
-        <p className={`${roboto_mono.className} whitespace-pre-wrap break-all break-words`}>{processedDomain ? processedDomain : 'fanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfan.fan'}</p>
+        <h4 className="italic text-slate-500 shrink-0">{countdown > 0 && <span>{countdown} s...</span>}Redirect to:</h4>
+        <p className={`${roboto_mono.className} whitespace-pre-wrap break-all break-words`}>{processedDomain ? <a href={`http://${processedDomain}`}>{processedDomain}</a> : 'fanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfanfan.fan'}</p>
       </div>
     </header>
     <main
       className={`max-w-5xl mx-auto p-5 lg:p-0 ${inter.className} ${roboto_mono.variable}`}
     >
-      <section className="p-5 md:p-8 bg-indigo-50 rounded-xl shadow-section border border-indigo-100">
+      <section className="p-5 md:p-8 bg-indigo-400/10 rounded-xl shadow-section border border-indigo-100 backdrop-blur">
         <h2 className="text-3xl mb-5 font-semibold">Overview</h2>
         <p className="text-slate-700">As we all know, the maximum length of a domain name is 63 characters. Although long domain names are interesting, they are extremely inconvenient to input. To solve this problem, <strong>63.do</strong> was born to provide a solution for inputting long domain names and bring convenience.</p>
       </section>
-      <section className="p-5 md:p-8 mt-10 bg-violet-50 rounded-xl shadow-section border border-violet-100">
+      <section className="p-5 md:p-8 mt-10 bg-violet-400/10 rounded-xl shadow-section border border-violet-100 backdrop-blur">
         <h2 className="text-3xl mb-5 font-semibold">Get started</h2>
         <p className="domain-guide">
 					<span className="domain-slice sub">
@@ -125,7 +146,7 @@ export default function Home() {
       </section>
     </main>
     <footer className="py-10 px-5 text-center text-sm text-slate-500">
-      <p>Copyright &copy; {new Date().getFullYear()} <a href="https://boring.studio/" target="_blank" className="inline-flex gap-1 items-center">Boring<svg width="16" height="16" viewBox="0 0 98 98" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.38)" fill="none" fill-rule="evenodd"><circle cx="48.5" cy="48.5" r="48.5" fill="black"/><g transform="translate(19.587 30.779)" fill="#FFF"><circle cx="8.861" cy="8.861" r="8.861"/><circle cx="48.966" cy="8.861" r="8.861"/></g><rect fill="#FFF" x="32.644" y="67.154" width="32.644" height="7.462" rx="3.731"/></g></svg>Studio</a>.</p>
+      <p>Copyright &copy; {new Date().getFullYear()} <a href="https://boring.studio/" target="_blank" className="inline-flex gap-1 items-center">Boring<svg width="16" height="16" viewBox="0 0 98 98" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.38)" fill="none" fillRule="evenodd"><circle cx="48.5" cy="48.5" r="48.5" fill="black"/><g transform="translate(19.587 30.779)" fill="#FFF"><circle cx="8.861" cy="8.861" r="8.861"/><circle cx="48.966" cy="8.861" r="8.861"/></g><rect fill="#FFF" x="32.644" y="67.154" width="32.644" height="7.462" rx="3.731"/></g></svg>Studio</a>.</p>
     </footer>
   </>
   );

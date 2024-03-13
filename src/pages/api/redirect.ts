@@ -11,11 +11,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
-  const domain = req.url?.split('?')[1];
+  const domain = req.query.domain;
   try {
     // 验证域名是否合法
     if (!isValidDomain(domain as string)) {
-      res.status(400).json({ error: 'Invalid domain' });
+      throw new Error('Invalid domain');
       return;
     }
     // 处理域名
