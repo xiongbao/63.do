@@ -17,7 +17,7 @@ export default function Home() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const response = await fetch(`/api/redirect?domain=${domain}`,{method: 'POST'});
+    const response = await fetch(`/${domain}`,{method: 'POST'});
     const data = await response.json();
     setProcessedDomain(data.domain);
   };
