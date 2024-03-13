@@ -124,8 +124,8 @@ export default function Home() {
         </div>
       </section>
     </main>
-    <footer className="py-10 flex justify-center text-sm text-slate-500">
-      <p className="flex gap-2">Copyright &copy; {new Date().getFullYear()} <a href="https://boring.studio/" target="_blank" className="flex gap-1 items-center">Boring<svg width="16" height="16" viewBox="0 0 98 98" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.38)" fill="none" fill-rule="evenodd"><circle cx="48.5" cy="48.5" r="48.5" fill="black"/><g transform="translate(19.587 30.779)" fill="#FFF"><circle cx="8.861" cy="8.861" r="8.861"/><circle cx="48.966" cy="8.861" r="8.861"/></g><rect fill="#FFF" x="32.644" y="67.154" width="32.644" height="7.462" rx="3.731"/></g></svg>Studio</a>.</p>
+    <footer className="py-10 px-5 text-center text-sm text-slate-500">
+      <p>Copyright &copy; {new Date().getFullYear()} <a href="https://boring.studio/" target="_blank" className="inline-flex gap-1 items-center">Boring<svg width="16" height="16" viewBox="0 0 98 98" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.38)" fill="none" fill-rule="evenodd"><circle cx="48.5" cy="48.5" r="48.5" fill="black"/><g transform="translate(19.587 30.779)" fill="#FFF"><circle cx="8.861" cy="8.861" r="8.861"/><circle cx="48.966" cy="8.861" r="8.861"/></g><rect fill="#FFF" x="32.644" y="67.154" width="32.644" height="7.462" rx="3.731"/></g></svg>Studio</a>.</p>
     </footer>
   </>
   );
