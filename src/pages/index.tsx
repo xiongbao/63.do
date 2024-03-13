@@ -60,7 +60,7 @@ export default function Home() {
     >
       <section className="p-5 md:p-8 bg-indigo-50 rounded-xl shadow-section border border-indigo-100">
         <h2 className="text-3xl mb-5 font-semibold">Overview</h2>
-        <p className="text-slate-700">As we all know, the maximum length of a domain name is 63 characters. Although long domain names are interesting, they are extremely inconvenient to input. To solve this problem, &quot;<strong>63.do</strong>&rdquo; was born to provide a solution for inputting long domain names and bring convenience.</p>
+        <p className="text-slate-700">As we all know, the maximum length of a domain name is 63 characters. Although long domain names are interesting, they are extremely inconvenient to input. To solve this problem, <strong>63.do</strong> was born to provide a solution for inputting long domain names and bring convenience.</p>
       </section>
       <section className="p-5 md:p-8 mt-10 bg-violet-50 rounded-xl shadow-section border border-violet-100">
         <h2 className="text-3xl mb-5 font-semibold">Get started</h2>
