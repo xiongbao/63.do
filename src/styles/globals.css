@@ -4,11 +4,6 @@
 
 body {
   font-family: var(--font-inter);
-  background-image: url(/images/bg.svg);
-  background-repeat: no-repeat;
-  background-position: 50% 30vh;
-  background-attachment: fixed;
-  @apply bg-[length:auto-50vh] sm:bg-[length:150%_auto];
 }
 
 a:hover {
