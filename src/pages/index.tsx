@@ -52,12 +52,12 @@ export default function Home() {
           className="sm:w-[100px] sm:h-[120px]"
           alt="63"
         />
-        <span className="flex flex-col sm:-mt-4">
+        <span className="flex flex-col mt-3 sm:mt-0">
           <span className="text-gray-600 text-lg order-2 -mt-1"><strong className="text-purple-700">do</strong>main</span>
           <span className="text-xl">链尚</span>
         </span>
       </h1>
-      <form className="mt-16 flex justify-center px-5 w-full flex-col gap-3 sm:flex-row" onSubmit={handleSubmit}>
+      <form className="mt-16 flex justify-center items-center px-5 w-full flex-col gap-3 sm:flex-row" onSubmit={handleSubmit}>
         <div className={`${roboto_mono.className} flex items-center border-[3px] border-slate-900 rounded-md text-slate-700`}>
           <span className="bg-slate-900 text-white px-2 leading-10">https://63.do/</span>
           <input
@@ -69,7 +69,7 @@ export default function Home() {
             onChange={(e) => setDomain(e.target.value)}
           />
         </div>
-        <button className="bg-indigo-500 text-white font-semibold rounded-md w-full h-10 sm:h-auto sm:w-20" type="submit">GO!</button>
+        <button className="bg-indigo-500 text-white font-semibold rounded-md w-20 h-11" type="submit">GO!</button>
       </form>
       <div className="flex gap-2 mt-5 px-5">
         <h4 className="italic text-slate-500 shrink-0">{countdown > 0 && <span>{countdown} s...</span>}Redirect to:</h4>
