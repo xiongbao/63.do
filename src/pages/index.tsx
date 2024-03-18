@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Inter, Roboto_Mono } from "next/font/google";
 import { useState, useEffect } from 'react';
+import { CgOpenCollective } from "react-icons/cg";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto_mono = Roboto_Mono({
@@ -70,7 +71,7 @@ export default function Home() {
             onChange={(e) => setDomain(e.target.value)}
           />
         </div>
-        <button className="bg-indigo-500 text-white font-semibold rounded-md w-20 h-11" type="submit">{loading ? <span>Loading</span> : 'GO!'}</button>
+        <button className="bg-indigo-500 text-white flex items-center justify-center font-semibold rounded-md w-20 h-11" type="submit">{loading ? <CgOpenCollective size={24} className="animate-spin" /> : 'GO!'}</button>
       </form>
       <div className="flex gap-2 mt-5 px-5">
         <h4 className="italic text-slate-500 shrink-0">{countdown > 0 && <span>{countdown} s...</span>}Redirect to:</h4>
