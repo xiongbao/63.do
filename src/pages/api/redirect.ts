@@ -39,7 +39,21 @@ export default async function handler(
 }
 const isValidDomain = (domain: string) => {
   const domainRegex = /^((?!-)[A-Za-z0-9\+\-\*-]{1,63}(?<!-)\.)+[A-Za-z]{2,63}$/;
-  return domainRegex.test(domain);
+  const sensitiveWords = ['xijinping', 'xjp', '习', '进', '平', '習']; // 替换为您的敏感词列表
+
+  // 检查域名是否有效
+  if (!domainRegex.test(domain)) {
+    return false;
+  }
+
+  // 检查域名是否包含敏感词
+  for (const word of sensitiveWords) {
+    if (domain.includes(word)) {
+      return false;
+    }
+  }
+
+  return true;
 };
 
 const processDomain = (domain: string) => {

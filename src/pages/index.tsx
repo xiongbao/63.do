@@ -12,11 +12,12 @@ const roboto_mono = Roboto_Mono({
 export default function Home() {
   const [domain, setDomain] = useState('');
   const [processedDomain, setProcessedDomain] = useState('');
+  const [loading, setLoading] = useState(false);
   const [countdown, setCountdown] = useState(0);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    setLoading(true);
     const response = await fetch(`/${domain}`,{method: 'POST'});
     const data = await response.json();
     setProcessedDomain(data.domain);
@@ -25,7 +26,7 @@ export default function Home() {
   useEffect(() => {
     if (processedDomain) {
       setCountdown(3);
-
+      setLoading(false);
       const timer = setTimeout(() => {
         window.location.href = `http://${processedDomain}`;
       }, 3000);
@@ -69,7 +70,7 @@ export default function Home() {
             onChange={(e) => setDomain(e.target.value)}
           />
         </div>
-        <button className="bg-indigo-500 text-white font-semibold rounded-md w-20 h-11" type="submit">GO!</button>
+        <button className="bg-indigo-500 text-white font-semibold rounded-md w-20 h-11" type="submit">{loading ? <span>Loading</span> : 'GO!'}</button>
       </form>
       <div className="flex gap-2 mt-5 px-5">
         <h4 className="italic text-slate-500 shrink-0">{countdown > 0 && <span>{countdown} s...</span>}Redirect to:</h4>
