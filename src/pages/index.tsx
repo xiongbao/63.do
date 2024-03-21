@@ -60,7 +60,7 @@ export default function Home() {
         </span>
       </h1>
       <form className="mt-16 flex justify-center items-center px-5 w-full flex-col gap-3 sm:flex-row" onSubmit={handleSubmit}>
-        <div className={`${roboto_mono.className} flex items-center border-[3px] border-slate-900 rounded-md text-slate-700`}>
+        <div className={`${roboto_mono.className} flex w-full sm:w-auto items-center border-[3px] border-slate-900 rounded-md text-slate-700`}>
           <span className="bg-slate-900 text-white px-2 leading-10">https://63.do/</span>
           <input
             type="text"
@@ -71,7 +71,7 @@ export default function Home() {
             onChange={(e) => setDomain(e.target.value)}
           />
         </div>
-        <button className="bg-indigo-500 text-white flex items-center justify-center font-semibold rounded-md w-20 h-11" type="submit">{loading ? <CgOpenCollective size={24} className="animate-spin" /> : 'GO!'}</button>
+        <button className="sm:bg-indigo-600 text-indigo-600 border-[3px] border-indigo-600 sm:text-white flex items-center justify-center font-semibold rounded-md w-full sm:w-20 h-11" type="submit">{loading ? <CgOpenCollective size={24} className="animate-spin" /> : 'GO →'}</button>
       </form>
       <div className="flex gap-2 mt-5 px-5">
         <h4 className="italic text-slate-500 shrink-0">{countdown > 0 && <span>{countdown} s...</span>}Redirect to:</h4>
@@ -150,7 +150,6 @@ export default function Home() {
     <footer className="py-10 px-5 text-center text-sm text-slate-500">
       <p>Copyright &copy; {new Date().getFullYear()} <a href="https://boring.studio/" target="_blank" className="inline-flex gap-1 items-center">Boring<svg width="16" height="16" viewBox="0 0 98 98" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.38)" fill="none" fillRule="evenodd"><circle cx="48.5" cy="48.5" r="48.5" fill="black"/><g transform="translate(19.587 30.779)" fill="#FFF"><circle cx="8.861" cy="8.861" r="8.861"/><circle cx="48.966" cy="8.861" r="8.861"/></g><rect fill="#FFF" x="32.644" y="67.154" width="32.644" height="7.462" rx="3.731"/></g></svg>Studio</a>.</p>
     </footer>
-    <div className="fixed isolate -z-10 left-0 top-0 right-0 bottom-0 bg-[url(/images/bg.svg)] bg-[auto_100%] bg-[50%_100%] bg-no-repeat"></div>
   </>
   );
 }
