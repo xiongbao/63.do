@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { useEffect, useState } from 'react';
 import { saveToGoogleSheets }  from './google-sheets';
+import { validateDomain } from '@/utils/domain-validator';
 
 type Data = {
   error?: string;
@@ -14,9 +15,8 @@ export default async function handler(
   const domain = req.query.domain;
   try {
     // 验证域名是否合法
-    if (!isValidDomain(domain as string)) {
+    if (!validateDomain(domain as string)) {
       throw new Error('Invalid domain');
-      return;
     }
     // 处理域名
     const processedDomain = await processDomain(domain as string);
@@ -34,7 +34,7 @@ export default async function handler(
     }
   } catch (error) {
     console.error('Error processing domain:', error);
-    res.status(500).json({ error: 'Error processing domain' });
+    res.status(500).json({ error: 'Invalid domain' });
   }
 }
 const isValidDomain = (domain: string) => {
