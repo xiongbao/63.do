@@ -29,8 +29,9 @@ export default async function handler(
       res.status(200).json({ domain: processedDomain });
     }
     else {
+      const punycode = require('punycode');
       // 重定向到处理后的域名
-      res.redirect(`http://${processedDomain}`);
+      res.redirect(`http://${punycode.toASCII(processedDomain)}`);
     }
   } catch (error) {
     console.error('Error processing domain:', error);
